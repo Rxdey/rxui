@@ -9,8 +9,16 @@ ___
 * 123123
 * 223223
 
-:::demo
- <div class="Home">
-    123
- </div>
-:::
+1. 测试
+2. 测试
+3. 测试
+`console.log(1)`
+
+```javascript
+alert(1)
+```
+
+参数 | 类型 
+- | :-: | 
+message | String|  
+type | String | 

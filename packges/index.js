@@ -1,7 +1,9 @@
 import Button from './button/index.js'
+import Toast from './toast/src/main.js'
 
 const components = [
-  Button
+  Button,
+  Toast
 ]
 
 const install = function(Vue, opts = {}) {
@@ -10,6 +12,8 @@ const install = function(Vue, opts = {}) {
   components.map(component => {
     Vue.component(component.name, component);
   });
+
+  Vue.prototype.$toast = Toast;
 
 };
 
@@ -20,5 +24,6 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 export default {
   install,
-  Button
+  Button,
+  Toast
 }
