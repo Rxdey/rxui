@@ -24,6 +24,11 @@ export default new Router({
         name: 'toast',
         component: resolve => require(['@/docs/toast.md'], resolve)
       },
+      {
+        path: '/modal',
+        name: 'modal',
+        component: resolve => require(['../../packges/modal/src/modal.vue'], resolve)
+      },
     ]
   }]
 })

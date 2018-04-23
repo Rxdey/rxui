@@ -36,6 +36,7 @@ export default {
 <style lang="less">
 @import url("../../../src/style/var.less");
   .rx-toast {
+    z-index: 2000;
     position: fixed;
     padding: 15px 15px 15px 20px;
     background: #f7f7f7;

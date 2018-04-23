@@ -17,6 +17,9 @@
             <li class="nav--item">
               <router-link to="/toast">Toast</router-link>
             </li>
+            <li class="nav--item">
+              <router-link to="/modal">Modal</router-link>
+            </li>
           </ul>
         </nav>
       </aside>
