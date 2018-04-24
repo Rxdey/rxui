@@ -17,18 +17,45 @@ export default new Router({
       {
         path: '/button',
         name: 'button',
-        component: resolve => require(['@/docs/button.md'], resolve)
+        components: {
+          default:resolve => require(['@/docs/button.md'], resolve),
+          other:resolve => require(['@/view/example/button.vue'], resolve)
+        }
       },
       {
         path: '/toast',
         name: 'toast',
-        component: resolve => require(['@/docs/toast.md'], resolve)
+        components:{
+          default:resolve => require(['@/docs/toast.md'], resolve),
+          other:resolve => require(['@/view/example/toast.vue'], resolve)
+        }
       },
       {
-        path: '/modal',
-        name: 'modal',
-        component: resolve => require(['../../packges/modal/src/modal.vue'], resolve)
+        path: '/MessageBox',
+        name: 'MessageBox',
+        components:{
+          default:resolve => require(['@/docs/MessageBox.md'], resolve),
+          other:resolve => require(['@/view/example/MessageBox.vue'], resolve)
+        }
       },
     ]
-  }]
+  },
+{
+  path: '/page',
+  name: 'page',
+  component: resolve => require(['@/view/page.vue'], resolve),
+  children:[
+    {
+      path:'/btn',
+      name:'btn',
+      component:resolve => require(['@/view/example/button.vue'], resolve)
+    },
+    {
+      path:'/t',
+      name:'t',
+      component:resolve => require(['@/view/example/toast.vue'], resolve)
+    }
+  ]
+}
+]
 })

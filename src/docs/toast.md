@@ -1,30 +1,8 @@
-# Button
+# Toast
+
+>注:当前预览页面为同一个单页，故提示会显示在整个页面中间
 
 ### 基本样式
-::: demo
-<div style="max-width:500px">
-  <rx-button type="blue" @click="btnClick('info')">提示</rx-button>
-  <rx-button type="green" @click="btnClick('success')">成功</rx-button>
-  <rx-button type="red" @click="btnClick('error')">错误</rx-button>
-  <rx-button type="yellow" @click="btnClick('warning')">警告</rx-button>
-</div>
-
-<script>
-export default {
-  data() {
-    return {
-    }
-
-  },
-  methods:{
-    btnClick(msg){
-      this.$toast({message:'打开一条消息',type:msg})
-    }
-  }
-}
-</script>
-
-:::
 
 ```html
 <rx-button type="yellow" @click="btnClick('warning')">提示</rx-button>
@@ -32,14 +10,9 @@ export default {
 
 ``` javascript 
 export default {
-  data() {
-    return {
-    }
-
-  },
   methods:{
-    btnClick(msg){
-      this.$toast({message:'打开一条消息',type:msg})
+    showToast(msg){
+      this.$toast({message:'操作提示',type:'success',size:'large',position:'middle'})
     }
   }
 }
@@ -52,3 +25,5 @@ export default {
 - | :-: | :-: | :-: | :-:
 message | String| 消息内容 |  
 type | String | 类型 | success/error/waraing/info | info
+size | String | 大小 | large/small | small
+position | String | 位置 | middle/top/bottom | middle

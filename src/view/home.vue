@@ -18,15 +18,21 @@
               <router-link to="/toast">Toast</router-link>
             </li>
             <li class="nav--item">
-              <router-link to="/modal">Modal</router-link>
+              <router-link to="/MessageBox">MessageBox</router-link>
             </li>
           </ul>
         </nav>
       </aside>
       <main class="main">
-        <router-view></router-view>
+        <router-view name="default"></router-view>
       </main>
-      <!-- <aside class="aside mobile"></aside> -->
+      <aside class="aside mobile">
+        <div class="mobile-bg">
+          <div class="mobile-content">
+            <router-view name="other"></router-view>
+          </div>
+        </div>
+      </aside>
     </div>
   </div>
 </template>
@@ -40,7 +46,7 @@ export default {
   methods: {
 
   },
-  created(){
+  created() {
     // this.$toast({message:'测试'})
   }
 }
@@ -82,10 +88,27 @@ export default {
   padding: 20px;
   background: #fff;
 }
-// .mobile{
-//   width: 600px;
-//   margin: 0;
-// }
+.mobile {
+  width: 401px;
+  padding: 20px;
+  margin: 0;
+  display: flex;
+  flex-flow: column;
+  .mobile-bg {
+    box-sizing: border-box;
+    background: url("../moblie.png")no-repeat;
+    background-size: 100%;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-flow: column;
+    padding: 114px 28px 221px 26px;
+    .mobile-content{
+      flex: 1;
+      overflow: auto
+    }
+  }
+}
 .nav {
   ul {
     display: flex;
@@ -99,10 +122,10 @@ export default {
     background: #fff;
     list-style: none;
   }
-  &--title{
+  &--title {
     margin-left: 50px;
     font-size: 18px;
-    font-weight: bold
+    font-weight: bold;
   }
   a {
     text-decoration: none;
@@ -114,7 +137,7 @@ export default {
     box-sizing: border-box;
     &:hover {
       // background: #eee;
-      color: #63bbbb
+      color: #63bbbb;
     }
   }
 }

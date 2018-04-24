@@ -1,5 +1,14 @@
 <template>
-  <button class="rx-btn" @click="handleClick" :class="['rx-btn'+'--'+type,size!=='normal'&&'rx-btn--'+size,disabled&&'is-disabled',loading&&'is-loading']" :disabled="disabled">
+  <button 
+  class="rx-btn" 
+  @click="handleClick"
+  :class="[
+  'rx-btn'+'--'+type,size!=='normal'&&'rx-btn--'+size,
+  disabled&&'is-disabled',
+  loading&&'is-loading',
+  single&&'is-single'
+  ]" 
+  :disabled="disabled||loading">
     <i v-if="loading" class="rx-icon-ref"></i>
     <i v-else-if="icon" :class="icon"></i>
     <span v-if="$slots.default">
@@ -31,6 +40,10 @@ export default {
     loading: {
       type: Boolean,
       default: false
+    },
+    single: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -38,7 +51,7 @@ export default {
 
     }
   },
-  computed:{
+  computed: {
 
   },
   methods: {
@@ -57,93 +70,103 @@ export default {
 
 <style scoped lang="less">
 @import url("../../../src/style/var.less");
-@font-size:16px;
-.mix-btn(@backColor,@color,@fontcolor) {
+
+.mix-btn(@backColor,@fontcolor) {
+  position: relative;
   display: inline-block;
   box-sizing: border-box;
   margin: 0;
-  padding: 10px 12px;
+  padding: 0 15px;
+  height: 40px;
+  line-height: 40px;
   border-radius: 4px;
-  font-size: @font-size;
+  font-size: 16px;
   background: @backColor;
-  border: 1px solid @color;
+  border: none;
   color: @fontcolor;
-  cursor: pointer;
+  // cursor: pointer;
   text-align: center;
   outline: none;
+  overflow: hidden;
+  span,i{font-size: 1em}
+  &::after {
+    position: absolute;
+    background-color: #000;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+  }
+  &:active {
+    &::after {
+      opacity: 0.4;
+    }
+  }
+  &.is-disabled {
+    opacity: 0.6;
+  }
+  &.is-single{
+    border: 1px solid @backColor;
+    color: @backColor;
+    background: #fff;
+  }
+  &.is-loading {
+    opacity: 0.6;
+    .rx-icon-ref {
+      animation: loading 1s linear infinite;
+      display: inline-block;
+    }
+  }
 }
-.is-disabled(@backColor,@color){
-  background: @backColor;
-  border: 1px solid fade(@color,40%);
-  background: fade(@backColor,70%);
-  cursor: not-allowed;
-  &:active,
-  &:hover { opacity: 1; }
-}
-.rx-btn ~ .rx-btn {
-  margin: 5px;
+
+.btn-group {
+  .rx-btn {
+    margin-bottom: 5px;
+  }
 }
 .rx-btn {
-  &:active, &:hover { opacity: 0.85; }
-  i{
-    font-size: @font-size;
-    margin-right: 5px
-  }
   &--default {
-    .mix-btn(#fff,#ddd,#444);
-    &:active, &:hover { background: #eee; }
-    &.is-disabled,&.is-loading{
-      .is-disabled(#fff,#ddd);
-      color: #988f8f;
-      &:active, &:hover { background: #fff; }
-    }
-
+    .mix-btn(#fff,#444);
+    border: 1px solid #ddd;
+    &.is-single{
+    border: 1px solid #333;
+    color: #333;
+  }
   }
   &--red {
-    .mix-btn(@color-red,@color-red,#fff);
-    &.is-disabled,&.is-loading{
-      .is-disabled(@color-red,@color-red);
-    }
+    .mix-btn(@color-red,#fff);
   }
   &--blue {
-    .mix-btn(@color-blue,@color-blue,#fff);
-    &.is-disabled,&.is-loading{
-      .is-disabled(@color-blue,@color-blue);
-    }
+    .mix-btn(@color-blue,#fff);
   }
   &--green {
-    .mix-btn(@color-green,@color-green,#fff);
-    &.is-disabled,&.is-loading{
-      .is-disabled(@color-green,@color-green);
-    }
+    .mix-btn(@color-green,#fff);
   }
   &--yellow {
-    .mix-btn(@color-yellow,@color-yellow,#fff);
-    &.is-disabled,&.is-loading{
-      .is-disabled(@color-yellow,@color-yellow);
-    }
+    .mix-btn(@color-yellow,#fff);
   }
   &--large {
     display: block;
     width: 100%;
   }
   &--small {
-    padding: 5px 10px;
+    // padding: 0 15px;
+    height: 30px;
+    line-height: 30px;
     font-size: 12px;
-    i{
-    font-size: 12px
-    }
   }
-  &.is-loading{
-    .rx-icon-ref{
-      animation: loading 1s linear infinite;
-      display: inline-block
-    }
-  }
+
   
+
   @keyframes loading {
-    from{transform: rotate(0deg)}
-    to{transform: rotate(360deg)}
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 }
 </style>

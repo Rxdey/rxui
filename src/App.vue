@@ -17,13 +17,14 @@ body,html,#app {
   width: 100%;
   height: 100%;
   margin: 0;padding: 0;
-  background: #f0efef
+  background: #f0efef;
+  box-sizing: border-box
 }
 body{
   background-color:white;
   color: #333333; /* dark gray not black */
   line-height: 1;
-  font-family: -apple-system,"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","WenQuanYi Micro Hei","Microsoft Yahei",sans-serif
+  font-family: Helvetica Neue,Helvetica,STHeiTi,Arial,sans-serif;
 }
 pre{
   padding: 1em;

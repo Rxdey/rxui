@@ -1,5 +1,5 @@
 <template>
-  <div class="rx-modal">
+  <div class="rx-modal" v-if="modalShow">
     <div class="rx-modal--content">
       <div class="rx-modal--content__title">
         <h4>Title</h4>
@@ -8,8 +8,8 @@
         哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
       </div>
       <div class="rx-modal--content__foot">
-        <button class="rx-modal--sure" @handleSure="handleClick">确定</button>
-        <button class="rx-modal--close" @handleClose="handleClose">取消</button>
+        <button class="rx-modal--sure" @click="handleClick">确定</button>
+        <button class="rx-modal--close" @click="handleClose">取消</button>
       </div>
     </div>
   </div>
@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      modalShow:false
+      modalShow:true
     }
 
   },
