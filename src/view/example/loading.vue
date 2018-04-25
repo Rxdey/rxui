@@ -1,10 +1,8 @@
 <template>
   <div class="page">
     <div class="example btn-group">
-      <p>Toast</p>
-      <rx-button size="large" @click="showToast('info','small','top')">单行顶部显示</rx-button>
-      <rx-button size="large" type="green" @click="showToast('success','large','middle')">大图标中间显示</rx-button>
-      <rx-button size="large" type="red" @click="showToast('error','small','bottom')">单行底部显示</rx-button>
+      <p>Loading</p>
+      <rx-button size="large" @click="showToast">点击加载</rx-button>
     </div>
   </div>
 </template>
@@ -13,11 +11,12 @@
 export default {
   data() {
     return {
+
     }
   },
   methods:{
-    showToast(e,m,g){
-      this.$toast({message:'操作失败',type:e,size:m,position:g})
+    showToast(){
+      console.log(1)
     }
   }
 }

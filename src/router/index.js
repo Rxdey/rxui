@@ -38,6 +38,14 @@ export default new Router({
           other:resolve => require(['@/view/example/MessageBox.vue'], resolve)
         }
       },
+      {
+        path: '/loading',
+        name: 'loading',
+        components:{
+          default:resolve => require(['@/docs/loading.md'], resolve),
+          other:resolve => require(['@/view/example/loading.vue'], resolve)
+        }
+      },
     ]
   },
 {
@@ -59,6 +67,11 @@ export default new Router({
       path: '/msg',
       name: 'msg',
       component:resolve => require(['@/view/example/MessageBox.vue'], resolve)
+    },
+    {
+      path: '/load',
+      name: 'load',
+      component:resolve => require(['@/view/example/loading.vue'], resolve)
     }
   ]
 }

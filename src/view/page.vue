@@ -26,6 +26,7 @@ export default {
         {path:'/btn',name:'Btn'},
         {path:'/t',name:'Toast'},
         {path:'/msg',name:'MessageBox'},
+        {path:'/load',name:'Loading'},
       ],
       isTransfrom:false
     }
@@ -61,4 +62,7 @@ ul.menu-list {
   a{ text-decoration: none;color: #444;padding: 10px;display: block;&:active{background: #eee;width: 100%;height: 100%}}
 }
 }
+
+
+
 </style>
