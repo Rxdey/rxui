@@ -54,6 +54,11 @@ export default new Router({
       path:'/t',
       name:'t',
       component:resolve => require(['@/view/example/toast.vue'], resolve)
+    },
+    {
+      path: '/msg',
+      name: 'msg',
+      component:resolve => require(['@/view/example/MessageBox.vue'], resolve)
     }
   ]
 }

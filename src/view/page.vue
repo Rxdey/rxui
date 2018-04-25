@@ -25,6 +25,7 @@ export default {
       navList:[
         {path:'/btn',name:'Btn'},
         {path:'/t',name:'Toast'},
+        {path:'/msg',name:'MessageBox'},
       ],
       isTransfrom:false
     }

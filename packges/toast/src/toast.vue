@@ -50,7 +50,7 @@ export default {
     min-width: 96px;
     transform: translate(-50%,-50%);
     opacity: 1;
-    transition: 0.3s;
+    transition: 0.5s;
     &.middle{top: 50%;}
     &.top{top: 10%}
     &.bottom{top: 80%}

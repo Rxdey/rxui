@@ -1,42 +1,68 @@
 <template>
-  <div class="rx-modal" v-if="modalShow">
-    <div class="rx-modal--content">
-      <div class="rx-modal--content__title">
-        <h4>Title</h4>
+<transition name="modal">
+  <div :class="['rx-msgbox',center&&'is-center']" v-if="msgboxShow">
+    <div class="rx-msgbox--content">
+      <div class="rx-msgbox--content__title">
+        <h4>{{title}}</h4>
       </div>
-      <div class="rx-modal--content__body">
-        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+      <div class="rx-msgbox--content__body">
+        <p>{{message}}</p>
+        <div class="rx-msgbox--confirm">
+          <!-- <input type="text"> -->
+        </div>
       </div>
-      <div class="rx-modal--content__foot">
-        <button class="rx-modal--sure" @click="handleClick">确定</button>
-        <button class="rx-modal--close" @click="handleClose">取消</button>
+      <div class="rx-msgbox--content__foot">
+        <button class="rx-msgbox--sure" @click="success">{{sureName}}</button>
+        <button v-if="isCancel" class="rx-msgbox--close" @click="cancel">{{closeName}}</button>
       </div>
     </div>
   </div>
+</transition>
 </template>
 
 <script type="text/ecmascript-6">
 export default {
+  name:'msgbox',
   data() {
     return {
-      modalShow:true
+      message:'',
+      title:'',
+      msgboxShow:false,
+      btnSureName:'确定',
+      btnCloseName:'取消',
+      options:'',
+      isCancel:true,
+      center:false
     }
-
+  },
+  computed:{
+    sureName(){
+      if(this.btnSureName.trim()!=''){
+        return this.btnSureName
+      }else{
+        return '确定'
+      }
+    },
+    closeName(){
+      if(this.btnSureName.trim()!=''){
+        return this.btnCloseName
+      }else{
+        return '取消'
+      }
+    }
   },
   methods:{
-    handleClick(e){
-      this.hide();
-      this.$emit('handleSure',e);
-    },
-    handleClose(e){
+    success(e){
       this.hide()
-      this.$emit('handleClose',e)
+    },
+    cancel(e){
+      this.hide()
     },
     show(){
-      this.modalShow=true;
+      this.msgboxShow=true;
     },
     hide(){
-      this.modalShow=false;
+      this.msgboxShow=false;
     }
   }
 }
@@ -49,12 +75,15 @@ export default {
   outline: none;
   background: #fff;
   width: 50%;
-  padding: 15px;
+  padding: 10px;
   &:nth-child(2){border-left: 1px solid #ddd}
   flex: 1;
-  cursor: pointer;
+  box-sizing: border-box;
+  // cursor: pointer;
 }
-.rx-modal {
+.rx-msgbox {
+  opacity: 1;
+  transition: 0.5s;
   width: 100%;
   height: 100%;
   position: fixed;
@@ -65,18 +94,23 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
+  font-size: 16px;
+  &.is-center{text-align: center}
   &--content {
-    min-width: 300px;
-    max-width: 380px;
+    min-width: 70%;
+    max-width: 80%;
     background: #fff;
     border-radius: 4px;
-    padding: 15px 0 0 0;
+    padding: 10px 0 0 0;
     overflow: hidden;
     &__title {
-      padding: 10px 20px;
+      padding: 5px 15px 0 15px;
     }
     &__body {
-      padding: 20px 20px;
+      font-size: 1em;
+      padding: 15px;
+      p{margin: 0}
     }
     &__foot {
       display: flex;
@@ -89,13 +123,22 @@ export default {
   }
   &--sure {
     .rx-btn;
-    &:hover,&:active{background: #eee}
+    &:active{background: #eee}
   }
   &--close {
     .rx-btn;
     background: @color-red;
     color: #fff;
-    &:hover,&:active{background: darken(@color-red,-10%)}
+    &:active{background: darken(@color-red,-10%)}
   }
 }
+  .modal-enter-active,
+  .modal-leave-active {
+    opacity: 1;
+  }
+  .modal-enter,
+  .modal-leave-to {
+    opacity: 0;
+  }
+
 </style>
