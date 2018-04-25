@@ -1,9 +1,11 @@
 import Button from './button/index.js'
 import Toast from './toast/src/main.js'
+import Msgbox from './messageBox/index'
 
 const components = [
   Button,
-  Toast
+  Toast,
+  Msgbox
 ]
 
 const install = function(Vue, opts = {}) {
@@ -14,6 +16,7 @@ const install = function(Vue, opts = {}) {
   });
 
   Vue.prototype.$toast = Toast;
+  Vue.prototype.$msgbox = Msgbox;
 
 };
 
@@ -25,5 +28,6 @@ if (typeof window !== 'undefined' && window.Vue) {
 export default {
   install,
   Button,
-  Toast
+  Toast,
+  Msgbox
 }
