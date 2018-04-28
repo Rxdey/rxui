@@ -1,5 +1,5 @@
 <template>
-<transition name="modal">
+<transition name="fade">
   <div :class="['rx-msgbox',center&&'is-center']" v-if="msgboxShow">
     <div class="rx-msgbox--content">
       <div class="rx-msgbox--content__title">
@@ -68,8 +68,8 @@ export default {
 }
 </script>
 
-<style scoped lang="less">
-@import url("../../../src/style/var.less");
+<style lang="less">
+@import url("../../style/default.less");
 .rx-btn {
   border: none;
   outline: none;
@@ -79,11 +79,9 @@ export default {
   &:nth-child(2){border-left: 1px solid #ddd}
   flex: 1;
   box-sizing: border-box;
-  // cursor: pointer;
 }
 .rx-msgbox {
   opacity: 1;
-  transition: 0.5s;
   width: 100%;
   height: 100%;
   position: fixed;
@@ -96,6 +94,7 @@ export default {
   align-items: center;
   box-sizing: border-box;
   font-size: 16px;
+  transition: 0.5s;
   &.is-center{text-align: center}
   &--content {
     min-width: 70%;
@@ -132,13 +131,5 @@ export default {
     &:active{background: darken(@color-red,-10%)}
   }
 }
-  .modal-enter-active,
-  .modal-leave-active {
-    opacity: 1;
-  }
-  .modal-enter,
-  .modal-leave-to {
-    opacity: 0;
-  }
 
 </style>

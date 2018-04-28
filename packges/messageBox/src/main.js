@@ -2,7 +2,6 @@ import Vue from 'vue'
 import MessageBox from './messageBox.vue'
 
 function merge(target){
-
   for(let i=0;i<arguments.length;i++){
     let parme = arguments[i]||{};
     for(let item in parme){

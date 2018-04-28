@@ -12,7 +12,6 @@ export default {
 
 <style>
 @import url('./style/md.css');
-@import url('./font/iconfont.css');
 body,html,#app {
   width: 100%;
   height: 100%;

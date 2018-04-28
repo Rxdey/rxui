@@ -1,11 +1,15 @@
 import Button from './button/index.js'
 import Toast from './toast/src/main.js'
-import Msgbox from './messageBox/index'
+import Msgbox from './messageBox/index.js'
+import Rxloading from './loading/index.js'
+import ActionSheet from './ActionSheet/index.js'
 
 const components = [
   Button,
   Toast,
-  Msgbox
+  Msgbox,
+  Rxloading,
+  ActionSheet
 ]
 
 const install = function(Vue, opts = {}) {
@@ -29,5 +33,7 @@ export default {
   install,
   Button,
   Toast,
-  Msgbox
+  Msgbox,
+  Rxloading,
+  ActionSheet
 }

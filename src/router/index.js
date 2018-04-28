@@ -46,6 +46,14 @@ export default new Router({
           other:resolve => require(['@/view/example/loading.vue'], resolve)
         }
       },
+      {
+        path: '/actionsheet',
+        name: 'actionsheet',
+        components:{
+          default:resolve => require(['@/docs/actionsheet.md'], resolve),
+          other:resolve => require(['@/view/example/as.vue'], resolve)
+        }
+      },
     ]
   },
 {
@@ -72,6 +80,11 @@ export default new Router({
       path: '/load',
       name: 'load',
       component:resolve => require(['@/view/example/loading.vue'], resolve)
+    },
+    {
+      path: '/as',
+      name: 'as',
+      component:resolve => require(['@/view/example/as.vue'], resolve)
     }
   ]
 }

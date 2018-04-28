@@ -20,6 +20,12 @@
             <li class="nav--item">
               <router-link to="/MessageBox">MessageBox</router-link>
             </li>
+            <li class="nav--item">
+              <router-link to="/loading">Loading</router-link>
+            </li>
+            <li class="nav--item">
+              <router-link to="/actionsheet">ActionSheet</router-link>
+            </li>
           </ul>
         </nav>
       </aside>

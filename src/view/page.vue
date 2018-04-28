@@ -3,7 +3,7 @@
   <main>
     <header class="header">
       <h4>Title</h4>
-      <span class="list" @click="popLeft"><i class="rx-icon-fenlei"></i></span>
+      <span class="list" @click="popLeft">...</span>
     </header>
     <div class="main">
       <router-view></router-view>
@@ -27,6 +27,7 @@ export default {
         {path:'/t',name:'Toast'},
         {path:'/msg',name:'MessageBox'},
         {path:'/load',name:'Loading'},
+        {path:'/as',name:'Action Sheet'},
       ],
       isTransfrom:false
     }

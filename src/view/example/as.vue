@@ -1,10 +1,10 @@
 <template>
   <div class="page">
     <div class="example btn-group">
-      <p>Loading</p>
-      <rx-button size="large" @click="showToast">点击加载</rx-button>
+      <p>Action Sheet</p>
+      <rx-button size="large" @click="showToast">Action Sheet😄</rx-button>
     </div>
-    <Rxloading :isShow="isShow"></Rxloading>
+    <ActionSheet v-model="isShow"></ActionSheet>
   </div>
 </template>
 
@@ -12,21 +12,12 @@
 export default {
   data() {
     return {
-      isShow: false
+      isShow:false
     }
   },
   methods: {
     showToast() {
-      this.isShow = true
-    }
-  },
-  watch: {
-    'isShow'(to, from) {
-      if (this.isShow) {
-        setTimeout(() => {
-          this.isShow = false
-        }, 2000);
-      }
+      this.isShow=true
     }
   }
 }

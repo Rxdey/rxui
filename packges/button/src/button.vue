@@ -9,7 +9,7 @@
   single&&'is-single'
   ]" 
   :disabled="disabled||loading">
-    <i v-if="loading" class="rx-icon-ref"></i>
+    <i v-if="loading" class="rx-icon-loading"></i>
     <i v-else-if="icon" :class="icon"></i>
     <span v-if="$slots.default">
       <slot></slot>
@@ -69,7 +69,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import url("../../../src/style/var.less");
+@import url("../../style/default.less");
 
 .mix-btn(@backColor,@fontcolor) {
   position: relative;
@@ -114,7 +114,7 @@ export default {
   }
   &.is-loading {
     opacity: 0.6;
-    .rx-icon-ref {
+    .rx-icon-loading {
       animation: loading 1s linear infinite;
       display: inline-block;
     }
