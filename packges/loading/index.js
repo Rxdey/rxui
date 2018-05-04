@@ -1,7 +1,11 @@
-import Rxloading from './src/loading.vue'
+import loading from './src/loading.vue'
+import directive from './src/directive.js'
 
-Rxloading.install = function(Vue) {
-  Vue.component(Rxloading.name, Rxloading);
+loading.install = function(Vue) {
+  Vue.component('loading', loading);
 };
 
-export default Rxloading;
+export default {
+  loading,
+  directive
+};

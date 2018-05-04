@@ -4,7 +4,6 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import rxui from '../packges/index'
-
 Vue.config.productionTip = false
 
 Vue.use(rxui)

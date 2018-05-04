@@ -1,28 +1,32 @@
 import Button from './button/index.js'
 import Toast from './toast/src/main.js'
 import Msgbox from './messageBox/index.js'
-import Rxloading from './loading/index.js'
+import loading from './loading/index.js'
 import ActionSheet from './ActionSheet/index.js'
 
 const components = [
   Button,
   Toast,
   Msgbox,
-  Rxloading,
+  loading.loading,
   ActionSheet
 ]
 
 const install = function(Vue, opts = {}) {
   /* istanbul ignore if */
   if (install.installed) return;
+  // console.log(components)
   components.map(component => {
     Vue.component(component.name, component);
   });
 
   Vue.prototype.$toast = Toast;
   Vue.prototype.$msgbox = Msgbox;
-
+  Vue.use(loading.directive);
 };
+
+
+
 
 /* istanbul ignore if */
 if (typeof window !== 'undefined' && window.Vue) {
@@ -34,6 +38,6 @@ export default {
   Button,
   Toast,
   Msgbox,
-  Rxloading,
+  loading,
   ActionSheet
 }

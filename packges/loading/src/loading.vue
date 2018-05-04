@@ -1,30 +1,20 @@
 <template>
-<transition name="fade">
-  <div class="rx-loading" v-show="isShow">
-    <div class="rx-loading--icon">
-      <i class="rx-icon-loading"></i>
+  <transition name="fade">
+    <div class="rx-loading" v-show="isShow">
+      <div class="rx-loading--icon">
+        <i class="rx-icon-loading"></i>
+      </div>
     </div>
-  </div>
-</transition>
+  </transition>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 export default {
-  name:'Rxloading',
-  props:{
-    isShow:{
-      type:Boolean,
-      default:false
-    }
-  },
-  data() {
+  name:'loading',
+  data(){
     return {
-
+      isShow:false
     }
-
-  },
-  components: {
-
   }
 }
 </script>
@@ -46,7 +36,7 @@ export default {
   &--icon{
     color: #fff;
     animation: loading 1s linear infinite;
-    i{ font-size: 50px;}
+    i{ font-size: 24px;}
   }
 }
 

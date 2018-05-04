@@ -1,10 +1,15 @@
 <template>
-  <div class="page">
+  <div class="page" v-loading.full="isShow">
     <div class="example btn-group">
       <p>Loading</p>
       <rx-button size="large" @click="showToast">点击加载</rx-button>
     </div>
-    <Rxloading :isShow="isShow"></Rxloading>
+    
+    <div class="example btn-group" style="position:relative" v-loading="isShow">
+      <p>Loading</p>
+      <rx-button size="large" @click="showToast">点击加载</rx-button>
+    </div>
+
   </div>
 </template>
 
@@ -24,7 +29,8 @@ export default {
     'isShow'(to, from) {
       if (this.isShow) {
         setTimeout(() => {
-          this.isShow = false
+          this.isShow = false;
+          // console.log(this.isShow)
         }, 2000);
       }
     }
