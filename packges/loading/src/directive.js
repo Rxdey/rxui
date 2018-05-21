@@ -2,31 +2,30 @@ import Vue from 'vue';
 import Loading from './loading.vue';
 const Mask = Vue.extend(Loading);
 
-let instance = () =>{
-  return new Mask({
-    el: document.createElement('div'),
-  });
+const toggleLoading = (el, binding) => {
+  if (!binding.modifiers['full']) {
+    if (el.style.position === '') el.style.position = 'relative';
+    el.mask.$el.style.position = 'absolute'
+    el.appendChild(el.mask.$el)
+  } else {
+    
+    el.mask.$el.style.position = 'fixed'
+    // debugger
+    document.body.appendChild(el.mask.$el)
+  }
+  el.mask.isShow = binding.value;
 }
-
-let mask;
 export default Vue.directive('loading', {
-  bind: function(el, binding, vnode) {
-    mask = instance();
-    if(!binding.modifiers['full']){
-      mask.$el.style.position = 'absolute'
-    }else{
-      mask.$el.style.position = 'fixed'
-    }
-    el.appendChild(mask.$el)
-    mask.isShow = binding.value;
+  bind: function (el, binding, vnode) {
+    el.mask = new Mask({
+      el: document.createElement('div'),
+    });
+    toggleLoading(el, binding);
   },
-  update:function(el, binding){
-    mask.isShow = binding.value;
+  update: function (el, binding, vnode) {
+    el.mask.isShow = binding.value;
   },
-  unbind:function(el, binding){
+  unbind: function (el, binding) {
     el.removeChild(mask.$el);
   }
 })
-
-
-
