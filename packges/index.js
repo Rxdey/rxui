@@ -4,6 +4,7 @@ import Msgbox from './messageBox/index.js'
 import loading from './loading/index.js'
 import ActionSheet from './ActionSheet/index.js'
 import RXCalendar from './Calendar/index.js'
+import Scroll from './Scroller/index.js'
 
 const components = [
   Button,
@@ -11,17 +12,15 @@ const components = [
   Msgbox,
   loading.loading,
   ActionSheet,
-  RXCalendar
+  RXCalendar,
+  Scroll
 ]
 
 const install = function(Vue, opts = {}) {
-  /* istanbul ignore if */
   if (install.installed) return;
-  // console.log(components)
   components.map(component => {
     Vue.component(component.name, component);
   });
-
   Vue.prototype.$toast = Toast;
   Vue.prototype.$msgbox = Msgbox;
   Vue.use(loading.directive);
@@ -39,5 +38,6 @@ export default {
   Msgbox,
   loading,
   ActionSheet,
-  RXCalendar
+  RXCalendar,
+  Scroll
 }

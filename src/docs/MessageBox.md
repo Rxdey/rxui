@@ -1,8 +1,5 @@
 # MessageBox
 
->注:当前预览页面为同一个单页，故提示会显示在整个页面中间
-
-
 ``` javascript 
 export default {
   methods:{

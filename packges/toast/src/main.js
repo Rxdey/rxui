@@ -16,11 +16,11 @@ let toast = function (opt) {
   vm.vm.isShow = true
 }
 
-let arr = ['success','error','info','warning'].forEach(item=>{
-  toast[item]=(msg)=>{
+let arr = ['success', 'error', 'info', 'warning'].forEach(item => {
+  toast[item] = (msg) => {
     return toast({
-      message:msg,
-      type:item
+      message: msg,
+      type: item
     })
   }
 })

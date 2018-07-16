@@ -29,6 +29,7 @@ export default {
         {path:'/load',name:'Loading'},
         {path:'/as',name:'Action Sheet'},
         {path:'/calender',name:'Calender'},
+        {path:'/scroller',name:'Scroller'},
       ],
       isTransfrom:false
     }

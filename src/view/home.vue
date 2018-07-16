@@ -35,7 +35,8 @@
       <aside class="aside mobile">
         <div class="mobile-bg">
           <div class="mobile-content">
-            <router-view name="other"></router-view>
+            <!-- <router-view name="other"></router-view> -->
+            <iframe :src="link" width="100%" height="100%" frameborder="0"></iframe>
           </div>
         </div>
       </aside>
@@ -47,13 +48,18 @@
 export default {
   data() {
     return {
+      link:'http://localhost:8080/#/page'
     }
   },
   methods: {
-
   },
   created() {
-    // this.$toast({message:'测试'})
+   this.link = this.$route.meta.other
+  },
+  watch:{
+    '$route'(to,from){
+      this.link = to.meta.other
+    }
   }
 }
 </script>
@@ -108,7 +114,7 @@ export default {
     flex: 1;
     display: flex;
     flex-flow: column;
-    padding: 114px 28px 221px 26px;
+    padding: 114px 28px 194px 26px;
     .mobile-content{
       flex: 1;
       overflow: auto

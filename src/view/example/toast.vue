@@ -17,7 +17,7 @@ export default {
   },
   methods:{
     showToast(e,m,g){
-      this.$toast({message:'操作失败',type:e,size:m,position:g})
+      this.$toast({message:'操作失败',type:e,size:m,position:g,delay:1000})
     }
   }
 }
