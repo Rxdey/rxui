@@ -11,7 +11,7 @@ const toggleLoading = (el, binding) => {
     
     el.mask.$el.style.position = 'fixed'
     // debugger
-    document.body.appendChild(el.mask.$el)
+    el.appendChild(el.mask.$el)
   }
   el.mask.isShow = binding.value;
 }
@@ -26,6 +26,6 @@ export default Vue.directive('loading', {
     el.mask.isShow = binding.value;
   },
   unbind: function (el, binding) {
-    el.removeChild(mask.$el);
+    el.removeChild(el.mask.$el);
   }
 })

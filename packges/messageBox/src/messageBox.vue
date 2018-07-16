@@ -131,5 +131,15 @@ export default {
     &:active{background: darken(@color-red,-10%)}
   }
 }
+.fade-enter-active,
+.fade-leave-active {
+  opacity: 1;
+  // transition: 0.3s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+  // transition: 0.3s;
+}
 
 </style>

@@ -28,6 +28,7 @@ export default {
         {path:'/msg',name:'MessageBox'},
         {path:'/load',name:'Loading'},
         {path:'/as',name:'Action Sheet'},
+        {path:'/calender',name:'Calender'},
       ],
       isTransfrom:false
     }

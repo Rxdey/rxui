@@ -2,7 +2,7 @@
   <div class="page">
     <div class="example btn-group">
       <p>Action Sheet</p>
-      <rx-button size="large" @click="showToast">Action Sheet😄</rx-button>
+      <rx-button size="large" @click="showToast">Action Sheet</rx-button>
     </div>
     <ActionSheet v-model="isShow"></ActionSheet>
   </div>

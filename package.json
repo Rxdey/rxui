@@ -11,6 +11,7 @@
     "testmd": "node build/testmd.js"
   },
   "dependencies": {
+    "amfe-flexible": "^2.2.1",
     "github-markdown-css": "^2.10.0",
     "markdown-it-container": "^2.0.0",
     "vue": "^2.5.2",
@@ -43,6 +44,7 @@
     "postcss": "^6.0.21",
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.8",
+    "postcss-px-to-viewport": "0.0.3",
     "postcss-url": "^7.2.1",
     "rimraf": "^2.6.0",
     "semver": "^5.3.0",

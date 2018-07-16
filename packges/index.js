@@ -3,13 +3,15 @@ import Toast from './toast/src/main.js'
 import Msgbox from './messageBox/index.js'
 import loading from './loading/index.js'
 import ActionSheet from './ActionSheet/index.js'
+import RXCalendar from './Calendar/index.js'
 
 const components = [
   Button,
   Toast,
   Msgbox,
   loading.loading,
-  ActionSheet
+  ActionSheet,
+  RXCalendar
 ]
 
 const install = function(Vue, opts = {}) {
@@ -25,9 +27,6 @@ const install = function(Vue, opts = {}) {
   Vue.use(loading.directive);
 };
 
-
-
-
 /* istanbul ignore if */
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
@@ -39,5 +38,6 @@ export default {
   Toast,
   Msgbox,
   loading,
-  ActionSheet
+  ActionSheet,
+  RXCalendar
 }

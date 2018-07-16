@@ -85,6 +85,11 @@ export default new Router({
       path: '/as',
       name: 'as',
       component:resolve => require(['@/view/example/as.vue'], resolve)
+    },
+    {
+      path: '/calender',
+      name: 'calender',
+      component:resolve => require(['@/view/example/calender.vue'], resolve)
     }
   ]
 }
