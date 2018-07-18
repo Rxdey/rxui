@@ -6,7 +6,7 @@
         <span class="list" @click="popLeft">...</span>
       </header>
       <div class="main">
-        <router-view></router-view>
+        <router-view class="main-page"></router-view>
       </div>
     </main>
     <div class="menu">
@@ -90,6 +90,9 @@ main {
   flex-grow: 1;
   display: flex;
   position: relative;
+  &-page{
+    flex: 1;
+  }
 }
 .menu {
   width: 50%;

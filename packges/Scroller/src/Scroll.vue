@@ -1,7 +1,9 @@
 <template>
-  <div class="rx-scroller" ref="scroller" :class="{animated:animated}" :style="{transform:'translateY('+moveY+'px)'}">
-    <div class="rx-scroller--content" ref="content" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd">
+  <div class="rx-scroller" ref="scroller">
+    <div class="rx-scroller--content" ref="content" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd" :class="{animated:animated}" :style="{transform:'translateY('+moveY+'px)'}">
+      <div class="pull-down" v-show="isPullDown">下拉刷新</div>
       <slot></slot>
+      <div class="pull-up" v-show="isPullUp">上拉加载</div>
     </div>
   </div>
 </template>
@@ -16,6 +18,14 @@ export default {
     speed: {    // 滚动速度
       type: Number,
       default: 150
+    },
+    isPullUp:{
+      type:Boolean,
+      default:false
+    },
+    isPullDown:{
+      type:Boolean,
+      default:false
     }
   },
   data() {
@@ -31,7 +41,8 @@ export default {
         start:0
       },
       animated: false,
-      moveY: 0
+      moveY: 0,
+      isTouch:false
     }
   },
   mounted() {
@@ -45,7 +56,8 @@ export default {
     touchStart(event) {
       // event.preventDefault();
       // console.dir(event.target)
-      let tans = this.$refs.scroller.style.transform;
+      // this.isTouch = true;
+      let tans = this.$refs.content.style.transform;
       this.position.lastY = parseInt(tans.replace(/[^0-9\-,]/g, ''));  // 获取上次坐标
       this.position.startY = event.touches[0].clientY - this.position.lastY;  // 计算初始坐标
       this.position.start = event.touches[0].clientY;
@@ -53,10 +65,11 @@ export default {
       this.position.lastTime = Date.now();
     },
     touchMove(event) {
-      // event.preventDefault();
+      event.preventDefault();
+      if(this.isTouch)return
       this.position.nowY = event.touches[0].clientY
       let speed = this.position.nowY - this.position.startY
-      this.moveY = this.moveY >= 0 || this.moveY <= -(this.contentHeight - this.height + 20) ? speed = parseInt((speed - this.position.lastY) * 0.5) + this.position.lastY : speed
+      this.moveY = this.moveY >= 0 || this.moveY <= -(this.contentHeight - this.height + 20) ? speed = parseInt((speed - this.position.lastY) * 0.4) + this.position.lastY : speed
     },
     touchEnd(event) {
       // event.preventDefault();
@@ -65,19 +78,39 @@ export default {
       let speed = (parseInt(distance) / endDate) * this.speed;
       let tran = this.moveY + parseInt(speed);
       this.animated = true;
-      // if (tran > 0 || tran <= -this.fullHeight) {
-      //   tran = this.moveY > 0 || !this.isHeight ? 0 : -(this.fullHeight);
-      // }
-      if (tran >= 0) {
+      let pullDown = this.isPullDown?50:0
+      let pullUp = this.isPullUp?-this.fullHeight-50:-this.fullHeight
+      if (tran >= pullDown) {
+        tran = pullDown
+        if(this.isPullDown){
+          this.onPullDown()
+        }
+      }else if(tran < pullDown&&tran>=0){
         tran = 0
       }
-      if (tran <= -this.fullHeight && this.isHeight) {
-        tran = -this.fullHeight
+      if (tran <= pullUp) {
+        this.isHeight?pullUp:pullUp = 0
+        tran = pullUp
+        if(this.isPullUp){
+          this.onPullUp()
+        }
       }
       this.moveY = tran
     },
-    inertia() {
+    onPullDown(){
+      // this.isTouch = true
+      this.$emit('onPullDown')
     },
+    onPullUp(){
+      // this.isTouch = true
+      this.$emit('onPullUp')
+    },
+    pullDownReset(){
+      this.moveY = 0;
+    },
+    pullUpReset(){
+      this.moveY = -this.fullHeight;
+    }
   },
   computed: {
   },
@@ -89,9 +122,28 @@ export default {
 </script>
 <style lang="less">
 .rx-scroller {
-  &.animated {
-    transition: 0.3s cubic-bezier(0.1, 0.57, 0.1, 1);
-    // transition: 0.3s;
+  position: relative;
+  .pull-down{
+    text-align: center;
+    position: absolute;
+    top: -50px;
+    left: 0;
+    line-height: 50px;
+    width: 100%;
+    height: 50px;
+  }
+  .pull-up{
+    text-align: center;
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    line-height: 50px;
+    width: 100%;
+    height: 50px;
   }
 }
+.animated {
+    transition: 0.4s cubic-bezier(0.1, 0.57, 0.1, 1);
+    // transition: 0.3s;
+  }
 </style>

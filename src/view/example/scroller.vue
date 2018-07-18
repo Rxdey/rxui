@@ -1,6 +1,6 @@
 <template>
   <div class="scroller" ref="scroller">
-    <Scroll :height="height">
+    <Scroll ref="scroll" :height="height" @onPullDown="handlePullDown" @onPullUp="handlePullUp">
       <ul class="list">
         <li v-for="item in list" @click="listClick" :key="item">{{item}}</li>
       </ul>
@@ -18,13 +18,24 @@ export default {
   },
   mounted() {
     this.height = this.$refs.scroller.clientHeight;
-    for(let i=0;i<50;i++){
+    for(let i=0;i<10;i++){
       this.list.push(i+1)
     }
   },
   methods: {
     listClick(){
       console.log('list')
+    },
+    handlePullDown(){
+      console.log(1)
+      setTimeout(() => {
+        this.$refs.scroll.pullDownReset() 
+      }, 1000);
+    },
+    handlePullUp(){
+      setTimeout(() => {
+        this.$refs.scroll.pullUpReset() 
+      }, 1000);
     }
   },
   computed: {

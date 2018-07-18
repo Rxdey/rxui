@@ -68,6 +68,16 @@ export default new Router({
             other: 'http://localhost:8080/#/as'
           }
         },
+        {
+          path: '/scroll',
+          name: 'scroll',
+          components: {
+            default: resolve => require(['@/docs/scroller.md'], resolve),
+          },
+          meta: {
+            other: 'http://localhost:8080/#/scroller'
+          }
+        },
       ]
     },
     {
