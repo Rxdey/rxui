@@ -5,6 +5,7 @@ import loading from './loading/index.js'
 import ActionSheet from './ActionSheet/index.js'
 import RXCalendar from './Calendar/index.js'
 import Scroll from './Scroller/index.js'
+import rxPop from './Pop/index.js'
 
 const components = [
   Button,
@@ -13,7 +14,8 @@ const components = [
   loading.loading,
   ActionSheet,
   RXCalendar,
-  Scroll
+  Scroll,
+  rxPop
 ]
 
 const install = function(Vue, opts = {}) {
@@ -39,5 +41,6 @@ export default {
   loading,
   ActionSheet,
   RXCalendar,
-  Scroll
+  Scroll,
+  rxPop
 }

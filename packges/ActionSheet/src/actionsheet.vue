@@ -66,8 +66,6 @@ export default {
       },
       isShow(val) {
         this.$emit('input', val);
-        // console.log(val)
-        // this.value = val;
       }
   },
   mounted(){

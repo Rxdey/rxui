@@ -34,6 +34,7 @@ export default {
         { path: '/as', name: 'Action Sheet' },
         { path: '/calender', name: 'Calender' },
         { path: '/scroller', name: 'Scroller' },
+        { path: '/pop', name: 'pop' },
       ],
       isTransfrom: false
     }

@@ -118,6 +118,11 @@ export default new Router({
           path: '/scroller',
           name: 'scroller',
           component: resolve => require(['@/view/example/scroller.vue'], resolve)
+        },
+        {
+          path: '/pop',
+          name: 'pop',
+          component: resolve => require(['@/view/example/pop.vue'], resolve)
         }
       ]
     }
