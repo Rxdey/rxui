@@ -1,15 +1,17 @@
 <template>
-  <transition name="alert" v-if="isShow">
+  <transition name="alert">
+    <template v-if="isShow">
     <div class="rx-mask" v-if="isMask">
       <div class="rx-toast" :class="[type,size,position]">
-        <i :class="'rx-icon-'+type"></i>
+        <i v-show="isIcon" :class="'rx-icon-'+type"></i>
         <span>{{message}}</span>
       </div>
     </div>
     <div class="rx-toast" v-else :class="[type,size,position]">
-        <i :class="'rx-icon-'+type"></i>
+        <i v-show="isIcon" :class="'rx-icon-'+type"></i>
         <span>{{message}}</span>
-      </div>
+    </div>
+    </template>
   </transition>
 </template>
 
@@ -23,7 +25,8 @@ export default {
       size: 'small',
       position: 'middle',
       isMask: false,
-      delay:2000
+      delay:2000,
+      isIcon:false
     }
   },
   watch: {
@@ -62,9 +65,11 @@ export default {
   box-sizing: border-box;
   left: 50%;
   min-width: 96px;
+  max-width: 200px;
+  text-align: center;
   transform: translate(-50%, -50%);
   opacity: 1;
-  transition: 0.3s;
+  transition: 0.2s linear;
   &.middle {
     top: 50%;
   }
@@ -85,21 +90,28 @@ export default {
     span {
       display: block;
       text-align: center;
+      white-space:normal; word-break:break-all;
     }
+  }
+  &.success{
+    color: @color-green
+  }
+  &.error{
+    color: @color-red
+  }
+  &.warning{
+    color: @color-yellow
   }
 }
 .alert-enter-active,
 .alert-leave-active {
   opacity: 1;
-  // transform-origin: center center;
-  // transform: scale(1,1)
 }
 .alert-enter,
 .alert-leave-to {
   opacity: 0;
-  // transform-origin: center center;
-  // transform: scale(0.2,0.2)
 }
+
 .rx-icon-info {
   margin-right: 3px;
 }

@@ -15,7 +15,7 @@ export default {
   }
 }
 ```
-也可以直接调用 ` this.$toast.success('打开一条消息')`
+也可以直接调用 ` this.$toast.success('打开一条消息','top')`
 
 ### 属性
 
@@ -25,3 +25,5 @@ message | String| 消息内容 |
 type | String | 类型 | success/error/waraing/info | info
 size | String | 大小 | large/small | small
 position | String | 位置 | middle/top/bottom | middle
+isIcon | Boolean | 是否显示图标 | true/false | false
+isMask | Boolean | 是否添加遮罩 | true/false | false

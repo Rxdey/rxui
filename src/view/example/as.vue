@@ -39,6 +39,7 @@ export default {
   },
   methods: {
     menuClick({index,item}){
+      this.$toast.info('点击了'+item.label,'top')
       if(index === 2){
         this.$store.commit('updateLoading',true)
       setTimeout(() => {
