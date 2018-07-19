@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import rxui from '../packges/index'
+import store from './store/store'
 Vue.config.productionTip = false
 
 Vue.use(rxui)
@@ -12,6 +13,7 @@ Vue.use(rxui)
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

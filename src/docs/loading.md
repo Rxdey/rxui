@@ -9,7 +9,7 @@
 
 在需要显示加载框的元素上添加 `v-loading` 指令
 
-> 当前元素的 `position` 属性需要为 `relative` 或 `absolute`
+<!-- > 当前元素的 `position` 属性需要为 `relative` 或 `absolute` -->
 
 
 ```html

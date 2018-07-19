@@ -1,5 +1,5 @@
 <template>
-  <div class="container" :class="{move:isTransfrom}">
+  <div class="container" :class="{move:isTransfrom}" v-loading.full="isloading">
     <main>
       <header class="header">
         <h4>Title</h4>
@@ -41,6 +41,11 @@ export default {
   methods: {
     popLeft() {
       this.isTransfrom = !this.isTransfrom;
+    }
+  },
+  computed:{
+    isloading(){
+      return this.$store.state.isloading
     }
   }
 }

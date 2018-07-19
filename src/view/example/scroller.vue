@@ -1,6 +1,6 @@
 <template>
   <div class="scroller" ref="scroller">
-    <Scroll ref="scroll" :height="height" @onPullDown="handlePullDown" @onPullUp="handlePullUp">
+    <Scroll ref="scroll" :height="height" isPullDown isPullUp @onPullDown="handlePullDown" @onPullUp="handlePullUp">
       <ul class="list">
         <li v-for="item in list" @click="listClick" :key="item">{{item}}</li>
       </ul>

@@ -1,9 +1,13 @@
 <template>
   <div class="rx-scroller" ref="scroller">
     <div class="rx-scroller--content" ref="content" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd" :class="{animated:animated}" :style="{transform:'translateY('+moveY+'px)'}">
-      <div class="pull-down" v-show="isPullDown">下拉刷新</div>
+      <div class="pull-down" v-show="isPullDown">
+        <i class="rx-icon-loading"></i>
+      </div>
       <slot></slot>
-      <div class="pull-up" v-show="isPullUp">上拉加载</div>
+      <div class="pull-up" v-show="isPullUp">
+        <!-- <i class="rx-icon-loading"></i> -->
+      </div>
     </div>
   </div>
 </template>
@@ -19,13 +23,13 @@ export default {
       type: Number,
       default: 150
     },
-    isPullUp:{
-      type:Boolean,
-      default:false
+    isPullUp: {
+      type: Boolean,
+      default: false
     },
-    isPullDown:{
-      type:Boolean,
-      default:false
+    isPullDown: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -38,11 +42,11 @@ export default {
         lastY: 0,
         nowY: 0,
         lastTime: 0,
-        start:0
+        start: 0
       },
       animated: false,
       moveY: 0,
-      isTouch:false
+      isTouch: false
     }
   },
   mounted() {
@@ -66,7 +70,7 @@ export default {
     },
     touchMove(event) {
       event.preventDefault();
-      if(this.isTouch)return
+      if (this.isTouch) return
       this.position.nowY = event.touches[0].clientY
       let speed = this.position.nowY - this.position.startY
       this.moveY = this.moveY >= 0 || this.moveY <= -(this.contentHeight - this.height + 20) ? speed = parseInt((speed - this.position.lastY) * 0.4) + this.position.lastY : speed
@@ -78,38 +82,38 @@ export default {
       let speed = (parseInt(distance) / endDate) * this.speed;
       let tran = this.moveY + parseInt(speed);
       this.animated = true;
-      let pullDown = this.isPullDown?50:0
-      let pullUp = this.isPullUp?-this.fullHeight-50:-this.fullHeight
+      let pullDown = this.isPullDown ? 50 : 0
+      let pullUp = this.isPullUp ? -this.fullHeight - 50 : -this.fullHeight
       if (tran >= pullDown) {
         tran = pullDown
-        if(this.isPullDown){
+        if (this.isPullDown) {
           this.onPullDown()
         }
-      }else if(tran < pullDown&&tran>=0){
+      } else if (tran < pullDown && tran >= 0) {
         tran = 0
       }
-      if (tran <= pullUp) {
-        this.isHeight?pullUp:pullUp = 0
+      if (tran <= pullUp && tran < 0) {
+        this.isHeight ? pullUp : pullUp = 0
         tran = pullUp
-        if(this.isPullUp){
+        if (this.isPullUp) {
           this.onPullUp()
         }
       }
       this.moveY = tran
     },
-    onPullDown(){
+    onPullDown() {
       // this.isTouch = true
       this.$emit('onPullDown')
     },
-    onPullUp(){
+    onPullUp() {
       // this.isTouch = true
       this.$emit('onPullUp')
     },
-    pullDownReset(){
+    pullDownReset() {
       this.moveY = 0;
     },
-    pullUpReset(){
-      this.moveY = -this.fullHeight;
+    pullUpReset() {
+      this.moveY = this.isHeight?-this.fullHeight:0;
     }
   },
   computed: {
@@ -121,9 +125,10 @@ export default {
 }
 </script>
 <style lang="less">
+@import url("../../style/default.less");
 .rx-scroller {
   position: relative;
-  .pull-down{
+  .pull-down {
     text-align: center;
     position: absolute;
     top: -50px;
@@ -132,7 +137,7 @@ export default {
     width: 100%;
     height: 50px;
   }
-  .pull-up{
+  .pull-up {
     text-align: center;
     position: absolute;
     bottom: -50px;
@@ -143,7 +148,19 @@ export default {
   }
 }
 .animated {
-    transition: 0.4s cubic-bezier(0.1, 0.57, 0.1, 1);
-    // transition: 0.3s;
+  transition: 0.4s cubic-bezier(0.1, 0.57, 0.1, 1);
+  // transition: 0.3s;
+}
+.rx-icon-loading {
+  animation: loading 1s linear infinite;
+  display: inline-block;
+}
+@keyframes loading {
+  from {
+    transform: rotate(0deg);
   }
+  to {
+    transform: rotate(360deg);
+  }
+}
 </style>

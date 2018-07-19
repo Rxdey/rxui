@@ -1,10 +1,10 @@
 <template>
 <transition name="fadeup">
-  <div class="rx-as" v-show="isShow" :value="value">
+  <div class="rx-as" v-show="isShow" :value="value" @click="maskClick">
       <div class="rx-as--sheet">
         <ul class="rx-as__list">
-          <li class="rx-as__list__item">确定</li>
-          <li class="rx-as__list__item rx-as--close" :style="{ color: closeColor}" @click="isShow=false">关闭</li>
+          <li class="rx-as__list__item" :class="item.type" @click.stop="menuClick(index,item)" v-for="(item,index) in menu" :key="index">{{item.label}}</li>
+          <li class="rx-as__list__item rx-as--close" :style="{ color: closeMenu.color}" @click.stop="close">{{closeMenu.label}}</li>
         </ul>
       </div>
   </div>
@@ -18,6 +18,22 @@ export default {
     value: {
         type: Boolean,
         default:false
+    },
+    isMask: {
+        type: Boolean,
+        default:false
+    },
+    menu: {
+        type: Array,
+        default:()=>[]
+    },
+    closeMenu:{
+      type:Object,
+      default:()=>{return{label:'取消',color:'red'}}
+    },
+    autoToClose:{
+      type:Boolean,
+      default:false
     }
   },
   data() {
@@ -25,12 +41,24 @@ export default {
       btnList:[
         {color:'red',value:'确定'},
       ],
-      closeColor:'red',
       isShow:false
     }
   },
   methods:{
-
+    menuClick(index,item){
+      if(this.autoToClose)this.isShow = false
+      this.$emit('menuClick',{index,item})
+    },
+    close(){
+      this.isShow = false;
+      this.$emit('close')
+    },
+    maskClick(){
+      if(this.isMask){
+        this.isShow = false;
+        this.$emit('onMaskClick')
+      }
+    }
   },
   watch:{
       value(val) {
@@ -84,6 +112,9 @@ export default {
       font-size: 1em;
       box-sizing: border-box;
       background: #fff;
+      &.red{color: @color-red}
+      &.green{color: @color-green}
+      &.yellow{color: @color-yellow}
       &:active{background: #e6e6e6}
       &.rx-as--close{
         margin-top: 5px

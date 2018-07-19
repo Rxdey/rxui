@@ -4,7 +4,7 @@
       <p>Action Sheet</p>
       <rx-button size="large" @click="showToast">Action Sheet</rx-button>
     </div>
-    <ActionSheet v-model="isShow"></ActionSheet>
+    <ActionSheet v-model="isShow" :menu="menuLists" :isMask="false" @menuClick="menuClick" :autoToClose="false"></ActionSheet>
   </div>
 </template>
 
@@ -12,10 +12,43 @@
 export default {
   data() {
     return {
-      isShow:false
+      isShow:false,
+      menuLists:[
+        {
+          value:1,
+          label:'确定',
+          type:'default'
+        },
+        {
+          value:2,
+          label:'分享',
+          type:'green'
+        },
+        {
+          value:3,
+          label:'删除',
+          type:'red'
+        },
+        {
+          value:4,
+          label:'警告',
+          type:'yellow'
+        },
+      ]
     }
   },
   methods: {
+    menuClick({index,item}){
+      if(index === 2){
+        this.$store.commit('updateLoading',true)
+      setTimeout(() => {
+        this.$store.commit('updateLoading',false)
+        this.isShow = false
+      }, 1000);
+      }else{
+        this.isShow=false
+      }
+    },
     showToast() {
       this.isShow=true
     }
