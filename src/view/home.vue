@@ -29,6 +29,9 @@
             <li class="nav--item">
               <router-link to="/scroll">scroller</router-link>
             </li>
+            <li class="nav--item">
+              <router-link to="/popdoc">pop</router-link>
+            </li>
           </ul>
         </nav>
       </aside>

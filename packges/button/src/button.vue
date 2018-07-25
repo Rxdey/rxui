@@ -89,6 +89,24 @@ export default {
   outline: none;
   overflow: hidden;
   span,i{font-size: 1em}
+  // &::after {
+  //   position: absolute;
+  //   background-color: #000;
+  //   content: "";
+  //   width: 100%;
+  //   height: 100%;
+  //   border-radius: 4px;
+  //   opacity: 0.4;
+  //   bottom: -100%;
+  //   right: -100%;
+  //   transition: 0.3s all;
+  // }
+  //  &:active {
+  //   &::after {
+  //     bottom: 0;
+  //     right: 0;
+  //   }
+  // }
   &::after {
     position: absolute;
     background-color: #000;

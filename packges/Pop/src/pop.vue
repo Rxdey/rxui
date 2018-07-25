@@ -1,6 +1,6 @@
 <template>
   <transition :name="position">
-    <div :class="['rx-pop',position,full&&'full']" @click="clickClose" v-if="popShow">
+    <div ref="popup" :class="['rx-pop',position,full&&'full']" @click="clickClose" v-if="popShow">
       <slot></slot>
     </div>
   </transition>
@@ -60,6 +60,7 @@ export default {
     }
   },
   components: {
+
   }
 }
 </script>

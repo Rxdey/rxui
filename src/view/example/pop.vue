@@ -7,7 +7,7 @@
       <rx-button size="large" @click="showPop1('right')">右pop</rx-button>
       <rx-button size="large" @click="showPop1('left')">左pop</rx-button>
     </div>
-    <rx-pop v-model="popShow1" :full="full"  :position="position">
+    <rx-pop v-model="popShow1" :full="full" :position="position">
       <div class="topIngo">
         <p>顶部消息</p>
         <div class="btn-group" v-show="full">
@@ -22,20 +22,20 @@ export default {
   name: "pop",
   data() {
     return {
-      popShow1:false,
-      position:'top',
-      full:false,
+      popShow1: false,
+      position: 'top',
+      full: false,
     }
   },
   mounted() {
   },
   methods: {
     showPop1(p) {
-      p === 'right'?this.full = true:this.full = false
+      p === 'right' ? this.full = true : this.full = false
       this.position = p
       this.popShow1 = !this.popShow1
     },
-    close(){
+    close() {
       this.popShow1 = false
     }
   },
@@ -64,12 +64,12 @@ export default {
     padding-left: 10px;
   }
 }
-.topIngo{
+.topIngo {
   background: rgb(255, 255, 255);
   height: 100%;
   line-height: 40px;
-  p{
-    margin: 0
+  p {
+    margin: 0;
   }
 }
 </style>

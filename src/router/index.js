@@ -14,7 +14,7 @@ export default new Router({
           name: 'test',
           component: resolve => require(['@/docs/test.md'], resolve),
           meta: {
-            other: 'http://localhost:8080/#/page'
+            other: '#/page'
           }
         },
         {
@@ -25,7 +25,7 @@ export default new Router({
             // other:resolve => require(['@/view/example/button.vue'], resolve)
           },
           meta: {
-            other: 'http://localhost:8080/#/btn'
+            other: '#/btn'
           }
         },
         {
@@ -35,7 +35,7 @@ export default new Router({
             default: resolve => require(['@/docs/toast.md'], resolve),
           },
           meta: {
-            other: 'http://localhost:8080/#/t'
+            other: '#/t'
           }
         },
         {
@@ -45,7 +45,7 @@ export default new Router({
             default: resolve => require(['@/docs/MessageBox.md'], resolve),
           },
           meta: {
-            other: 'http://localhost:8080/#/msg'
+            other: '#/msg'
           }
         },
         {
@@ -55,7 +55,7 @@ export default new Router({
             default: resolve => require(['@/docs/loading.md'], resolve),
           },
           meta: {
-            other: 'http://localhost:8080/#/load'
+            other: '#/load'
           }
         },
         {
@@ -65,7 +65,7 @@ export default new Router({
             default: resolve => require(['@/docs/actionsheet.md'], resolve),
           },
           meta: {
-            other: 'http://localhost:8080/#/as'
+            other: '#/as'
           }
         },
         {
@@ -75,7 +75,17 @@ export default new Router({
             default: resolve => require(['@/docs/scroller.md'], resolve),
           },
           meta: {
-            other: 'http://localhost:8080/#/scroller'
+            other: '#/scroller'
+          }
+        },
+        {
+          path: '/popdoc',
+          name: 'pop',
+          components: {
+            default: resolve => require(['@/docs/pop.md'], resolve),
+          },
+          meta: {
+            other: '#/pop'
           }
         },
       ]
